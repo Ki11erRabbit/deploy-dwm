@@ -1,0 +1,28 @@
+#! /bin/sh
+
+# Make sure to run this script not as root as the script will ask for your password when it needs it
+
+# pulls necessary repositories, first with ssh then with http
+# if it fails then it will pull the repository to update it
+
+echo "Pulling DWM"
+$(git clone git@github.com:Ki11erRabbit/DWM.git || git clone https://github.com/Ki11erRabbit/DWM) || cd DWM && git pull && cd .. 
+
+echo "Pulling dwmblocks-async"
+$(git clone git@github.com:Ki11erRabbit/dwmblocks-async.git || git clone https://github.com/Ki11erRabbit/dwmblocks-async) || cd dwmblocks-async && git pull && cd .. 
+
+# installs DWM 
+echo "Installing DWM enter your password"
+cd DWM
+sudo make install
+cd ..
+
+#moves scripts for dwm and dwmblocks
+echo "Moving scripts for dwmblocks and other scripts"
+cp -rf .dwm ~/
+cp -rf scripts/bin/ ~/.local/
+
+#installs dwmblocks-async
+echo "Installing dwmblocks-async"
+cd dwmblocks-async
+sudo make install
