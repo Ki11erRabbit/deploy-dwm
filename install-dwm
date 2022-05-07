@@ -5,24 +5,29 @@
 # pulls necessary repositories, first with ssh then with http
 # if it fails then it will pull the repository to update it
 
-echo "Pulling DWM"
+tput setaf 2; echo "Pulling DWM" ; tput sgr 0
 $(git clone git@github.com:Ki11erRabbit/DWM.git || git clone https://github.com/Ki11erRabbit/DWM) || cd DWM && git pull && cd .. 
+echo " "
 
-echo "Pulling dwmblocks-async"
+tput setaf 2; echo "Pulling dwmblocks-async" ; tput sgr 0
 $(git clone git@github.com:Ki11erRabbit/dwmblocks-async.git || git clone https://github.com/Ki11erRabbit/dwmblocks-async) || cd dwmblocks-async && git pull && cd .. 
+echo " "
 
 # installs DWM 
-echo "Installing DWM enter your password"
+tput setaf 2; echo "Installing DWM enter your password" ; tput sgr 0
 cd DWM
 sudo make install
 cd ..
+echo " "
 
 #moves scripts for dwm and dwmblocks
-echo "Moving scripts for dwmblocks and other scripts"
+tput setaf 2; echo "Moving scripts for dwmblocks and other scripts" ; tput sgr 0
 cp -rf .dwm ~/
 cp -rf scripts/bin/ ~/.local/
+echo " "
 
 #installs dwmblocks-async
-echo "Installing dwmblocks-async"
+tput setaf 2; echo "Installing dwmblocks-async" ; tput sgr 0
 cd dwmblocks-async
 sudo make install
+echo " "

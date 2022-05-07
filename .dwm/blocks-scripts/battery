@@ -35,14 +35,14 @@ for battery in /sys/class/power_supply/BAT?*; do
 		Full) status="⚡" ;;
 		Discharging)
 			if [ "$capacity" -le 20 ]; then
-				status="❗ $status"
+				status="❗ $status "
 				notify-send -u=low "WARNING BATTERY LOW" "Plug in soon"
 			else
-				status="🔋 $status"
+				status="🔋 $status "
 			fi
 			;;
-		Charging) status="🔌 $status" ;;
-		"Not charging") status="🛑 $status" ;;
+		Charging) status="🔌 $status " ;;
+		"Not charging") status="🛑 $status " ;;
 		Unknown) status=" " ;;
 		*) exit 1 ;;
 	esac
@@ -51,4 +51,4 @@ for battery in /sys/class/power_supply/BAT?*; do
 	
 
 
-done && echo "$status $capacity"
+done && echo "$status$capacity"
