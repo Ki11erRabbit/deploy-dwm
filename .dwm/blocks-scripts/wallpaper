@@ -1,0 +1,14 @@
+#!/bin/sh
+
+case $BLOCK_BUTTON in
+	2) find ~/Pictures/Wallpapers/dwm -type f \( -name '*.jpg' -o -name '*.png' \) -print0 |
+        shuf -n1 -z | xargs -0 feh --bg-fill;;
+	3) notify-send "🖼️ Wallpaper Module" "Changes wallpaper
+- Left click to change." ;;
+	6) $TERMINAL -e nvim "$0" ;;
+	*) find ~/Pictures/Wallpapers/dwm -type f \( -name '*.jpg' -o -name '*.png' \) -print0 |
+        shuf -n1 -z | xargs -0 feh --bg-fill;;
+esac
+
+echo "🖼️"
+

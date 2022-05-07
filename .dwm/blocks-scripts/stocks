@@ -29,10 +29,10 @@ linenum=$(( $linenum - 1 ));;
 esac
 
 posneg=$(cat /tmp/stockchart | awk 'FNR==2{ print }' | awk '{ print $8 }' | sed $'s/\e\\[[0-9;:]*[a-zA-Z]//g' | cut -c1-2 | sed 's/.//g')
-if [ "$posneg" -lt 0 ]; then
-	icon="📉"
-else
+#if [ "$posneg" -lt 0 ]; then
+#	icon="📉"
+#else
 #icon="📈"
-fi
+#fi
 output=$(cat /tmp/stockchart | awk 'FNR==2{ print }' | awk '{ print $2 " $"  $4 }' | sed $'s/\e\\[[0-9;:]*[a-zA-Z]//g')
-echo "$icon $output"
+echo "$output"

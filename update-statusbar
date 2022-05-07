@@ -1,0 +1,25 @@
+#!/bin/sh
+
+outputsection(){
+tput setaf $2; echo "$1" ; tput sgr 0
+}
+
+
+outputsection "Moving scripts for dwmblocks and other scripts" 2
+cp -rf .dwm/blocks-scripts/. ~/.dwm/blocks-scripts/
+echo " "
+#outputsection $PWD 1
+
+#installs dwmblocks-async
+outputsection "Installing dwmblocks-async" 2
+cd dwmblocks-async
+sudo make install
+cd ..
+echo " "
+
+outputsection "Killing dwmblocks" 1
+pkill dwmblocks
+
+outputsection "Starting dwmblocks" 2
+dwmblocks &
+
