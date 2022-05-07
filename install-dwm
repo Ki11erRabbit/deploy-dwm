@@ -54,11 +54,11 @@ echo " "
 #outputsection $PWD 1
 
 desktop() {
-cp -rf dot-files/desktop/* ~/
+cp -rf dot-files/desktop/. ~/
 }
 
 laptop() {
-cp -rfv dot-files/laptop/* ~/
+cp -rfv dot-files/laptop/. ~/
 }
 
 # asks for which config to use
@@ -68,7 +68,7 @@ outputsection "1 for laptop/single monitor, 2 for desktop/multi-monitor. Default
 #outputsection $PWD 1
 read input
 
-input=${1:-$input}
+input="${input:=1}"
 
 case $input in
 	1) laptop ;;
@@ -76,6 +76,7 @@ case $input in
 esac
 echo " "
 
+#outputsection $PWD 1
 outputsection "Installing remaining config files" 2
-cp -rfv dot-files/general/* ~/
+cp -rfv dot-files/general/. ~/
 
