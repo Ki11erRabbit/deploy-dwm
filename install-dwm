@@ -2,32 +2,62 @@
 
 # Make sure to run this script not as root as the script will ask for your password when it needs it
 
+outputsection(){
+tput setaf $2; echo "$1" ; tput sgr 0
+}
+
+
 # pulls necessary repositories, first with ssh then with http
 # if it fails then it will pull the repository to update it
 
-tput setaf 2; echo "Pulling DWM" ; tput sgr 0
+outputsection "Pulling DWM" 2
 $(git clone git@github.com:Ki11erRabbit/DWM.git || git clone https://github.com/Ki11erRabbit/DWM) || cd DWM && git pull && cd .. 
 echo " "
 
-tput setaf 2; echo "Pulling dwmblocks-async" ; tput sgr 0
+outputsection "Pulling dwmblocks-async" 2
 $(git clone git@github.com:Ki11erRabbit/dwmblocks-async.git || git clone https://github.com/Ki11erRabbit/dwmblocks-async) || cd dwmblocks-async && git pull && cd .. 
 echo " "
 
 # installs DWM 
-tput setaf 2; echo "Installing DWM enter your password" ; tput sgr 0
+outputsection "Installing DWM enter your password" 2
 cd DWM
 sudo make install
 cd ..
 echo " "
 
 #moves scripts for dwm and dwmblocks
-tput setaf 2; echo "Moving scripts for dwmblocks and other scripts" ; tput sgr 0
+outputsection "Moving scripts for dwmblocks and other scripts" 2
 cp -rf .dwm ~/
 cp -rf scripts/bin/ ~/.local/
 echo " "
 
 #installs dwmblocks-async
-tput setaf 2; echo "Installing dwmblocks-async" ; tput sgr 0
+outputsection "Installing dwmblocks-async" 2
 cd dwmblocks-async
 sudo make install
 echo " "
+
+desktop() {
+cp -rf dot-files/desktop/ ~/
+}
+
+laptop() {
+cp -rf dot-files/laptop/ ~/
+}
+
+# asks for which config to use
+
+outputsection "Which config do you wish to use?" 2
+outputsection "2 for desktop/multi-monitor, 1 for laptop/single monitor. Default is 1" 3
+
+read input
+
+case $input in
+	1) laptop ;;
+	2) desktop ;;
+esac
+echo " "
+
+outputsection "Installing remaining config files" 2
+cp -rf dot-files/general/ ~/
+
