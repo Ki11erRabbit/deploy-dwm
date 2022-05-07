@@ -18,6 +18,10 @@ outputsection "Pulling dwmblocks-async" 2
 $(git clone git@github.com:Ki11erRabbit/dwmblocks-async.git || git clone https://github.com/Ki11erRabbit/dwmblocks-async) || cd dwmblocks-async && git pull && cd .. 
 echo " "
 
+outputsection "Pulling dmenu" 2
+$(git clone git@github.com:Ki11erRabbit/dmenu.git || git clone https://github.com/Ki11erRabbit/dmenu) || cd dmenu && git pull && cd ..
+echo " "
+
 # installs DWM 
 outputsection "Installing DWM enter your password" 2
 cd DWM
@@ -35,6 +39,13 @@ echo " "
 outputsection "Installing dwmblocks-async" 2
 cd dwmblocks-async
 sudo make install
+cd ..
+echo " "
+
+outputsection "Installing dmenu" 2
+cd dmenu
+sudo make install
+cd ..
 echo " "
 
 desktop() {
