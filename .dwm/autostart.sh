@@ -40,7 +40,7 @@ wmname LG3D &
 touchegg &
 
 ###---Wallpaper---###
-feh --bg-fill /home/ki11errabbit/Pictures/Wallpapers/80075693_p0\ Crop\ Upscale.png
+#feh --bg-fill /home/ki11errabbit/Pictures/Wallpapers/80075693_p0\ Crop\ Upscale.png
 
 ###---variable for dwmblocks---###
 echo 0 > /tmp/weather_option
