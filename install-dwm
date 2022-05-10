@@ -43,7 +43,7 @@ echo " "
 input="${input:=1}"
 
 case $input in
-	1) sed 's/\/\*- getsystraywidth()\*\//- getsystraywidth()/' dwm.c > /DWM/dwm.c ;;
+	1) sed 's/\/\*- getsystraywidth()\*\//- getsystraywidth()/' DWM/dwm.c > DWM/dwm.c ;;
 esac
 
 # installs DWM 
