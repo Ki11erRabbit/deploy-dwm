@@ -14,7 +14,8 @@ case "$(printf "🔒 lock\n🚪 leave dwm\n♻️ renew dwm\n🐻 hibernate\n�
 		pkill dwm ;;
 	'♻️ renew dwm') kill -HUP "$(pgrep -u "$USER" "\bdwm$")" ;;
 	'🐻 hibernate') mpv ~/.dwm/Jingles/sleep.wav && betterlockscreen -l $ctl hibernate ;;
-	'💤 sleep') mpv ~/.dwm/Jingles/sleep.wav && $ctl suspend ;;
+	'💤 sleep') mpv ~/.dwm/Jingles/sleep.wav &
+		$ctl suspend ;;
 	'🔃 reboot') 
 		mpv ~/.dwm/Jingles/shutdown.wav && $ctl reboot -i ;;
 	'🖥️shutdown')
