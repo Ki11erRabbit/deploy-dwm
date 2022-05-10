@@ -15,14 +15,6 @@ read input
 
 input="${input:=1}"
 
-# asks for which config to use
-
-outputsection "Which config do you wish to use?" 2
-outputsection "1 for laptop/single monitor, 2 for desktop/multi-monitor. Default is 1" 3
-#outputsection $PWD 1
-read input
-
-input="${input:=1}"
 
 # pulls necessary repositories, first with ssh then with http
 # if it fails then it will pull the repository to update it
@@ -42,13 +34,16 @@ echo " "
 
 input="${input:=1}"
 
-case $input in
-	1) sed 's/\/\*- getsystraywidth()\*\//- getsystraywidth()/' DWM/dwm.c > DWM/dwm.c ;;
-esac
 
 # installs DWM 
 outputsection "Installing DWM enter your password" 2
 cd DWM
+
+case $input in
+	1) outputsection "Adjusting dwm.c" 2 
+		sed 's/\/\*- getsystraywidth()\*\//- getsystraywidth()/' dwm.c > dwm.c;;
+esac
+
 sudo make install
 cd ..
 echo " "
@@ -64,6 +59,12 @@ echo " "
 #installs dwmblocks-async
 outputsection "Installing dwmblocks-async" 2
 cd dwmblocks-async
+
+case $input in
+	2) outputsection "Adjusting blocks config" 2 
+		sed 's/BLOCK(\"~\/.dwm\/blocks-scripts\/battery\"/\/\/BLOCK(\"~\/.dwm\/blocks-scripts\/battery\"/' config.h > config.h;;
+esac
+
 sudo make install
 cd ..
 echo " "
