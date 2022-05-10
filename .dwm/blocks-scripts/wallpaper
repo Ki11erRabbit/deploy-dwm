@@ -8,7 +8,5 @@ case $BLOCK_BUTTON in
 	6) $TERMINAL -e nvim "$0" ;;
 	*) find ~/Pictures/Wallpapers/dwm -type f \( -name '*.jpg' -o -name '*.png' \) -print0 |
         shuf -n1 -z | xargs -0 feh --bg-fill;;
-esac
-
-echo "🖼️"
+esac && echo "🖼️"
 
