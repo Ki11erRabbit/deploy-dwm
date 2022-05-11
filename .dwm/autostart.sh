@@ -6,7 +6,7 @@ mpv ~/.dwm/Jingles/startup.wav &
 ###---Xrandr---###
 #xrandr --output HDMI-A-0 --left-of DisplayPort-1 --output DisplayPort-1
 #xrandr --output DisplayPort-0 --off --output DisplayPort-1 --mode 1920x1080 --pos 1920x0 --rotate normal --output DisplayPort-2 --off --output HDMI-A-0 --primary --mode 1920x1080 --pos 0x0 --rotate normal
-
+#redshift -P -O 8550
 ###---Autostart---###
 if ! pgrep -x "fcitx" > /dev/null ; then
 	fcitx -d &
