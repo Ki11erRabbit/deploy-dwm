@@ -4,9 +4,9 @@
  
 numlines=$(wc -l ~/stockslist | awk '{print $1}')
 
-if [ "$STOCKLINE" -ge "$numlines" ]; then 
+if [[ -z $STOCKLINE ]]; then
 	export STOCKLINE=0
-elif [[ -z $STOCKLINE ]]; then
+elif [ "$STOCKLINE" -ge "$numlines" ]; then 
 	export STOCKLINE=0
 fi
 
