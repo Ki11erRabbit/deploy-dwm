@@ -11,8 +11,9 @@ getforecast() { curl -sf "wttr.in/$LOCATION" > "$weatherreport" || exit 1 ;}
 currweather=$(curl -sf "wttr.in/$LOCATION?format=%c%t+%h\n")
 # | sed 's/ //')
 #weather_option=$(cat ~/.dwm/blocks-scripts/helper-scripts/weather_option)
-weather_option=$(cat /tmp/weather_option)
-
+if [[ -z $WEATHER_OPTION ]]; then
+	export WEATHER_OPTION=0
+fi
 # Some very particular and terse stream manipulation. We get the maximum
 # precipitation chance and the daily high and low from the downloaded file and
 # display them with coresponding emojis.
