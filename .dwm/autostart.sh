@@ -43,4 +43,4 @@ touchegg &
 #feh --bg-fill /home/ki11errabbit/Pictures/Wallpapers/80075693_p0\ Crop\ Upscale.png
 
 ###---variable for dwmblocks---###
-echo 0 > /tmp/weather_option
+export WEATHER_OPTION=0 #echo 0 > /tmp/weather_option

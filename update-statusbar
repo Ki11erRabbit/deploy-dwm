@@ -21,5 +21,5 @@ outputsection "Killing dwmblocks" 1
 pkill dwmblocks
 
 outputsection "Starting dwmblocks" 2
-dwmblocks &
+dwmblocks & disown
 
