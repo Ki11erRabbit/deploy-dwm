@@ -10,6 +10,9 @@ super + w; {f,b,s,c}
 super + p 
 	cabl
 
+super + r
+	nemo
+
 super + ctrl + e
 	easyeffects
 
