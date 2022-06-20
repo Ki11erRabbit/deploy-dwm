@@ -1,0 +1,21 @@
+#!/bin/sh
+
+
+update() {
+plugged=$(lsusb | grep Unicomp | wc -l);
+
+if [[ $plugged = 1 ]]; then
+    source ~/.dwm/blocks-scripts/helper-scripts/unicomp
+    echo "Uni"
+else
+    source ~/.dwm/blocks-scripts/helper-scripts/unicomp
+    echo "Moon"
+fi
+}
+
+case $BLOCK_BUTTON in
+     1) update ; pkill -RTMIN+19 dwmblocks;;
+     3) notify-send "Keyboard" "shows which keyboard layout is being used" ; update;;
+     6) $TERMINAL -e nvim "$0"; update;;
+     *) update ;;
+esac

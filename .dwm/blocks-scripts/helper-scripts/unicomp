@@ -1,0 +1,15 @@
+#!bin/sh
+
+
+plugged=$(lsusb | grep Unicomp | wc -l);
+
+if [[ $plugged = 1 ]]; then
+    setxkbmap us -variant colemak_dh
+    xmodmap -e "keycode 107 = Super_R Print"
+    xmodmap -e "clear lock"
+    xmodmap -e "keycode 66 = BackSpace Caps_Lock"
+    xmodmap -e "keycode 33 = apostrophe quotedbl"
+    xmodmap -e "keycode 48 = semicolon colon"
+else
+    setxkbmap -layout us
+fi
