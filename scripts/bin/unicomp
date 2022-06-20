@@ -1,4 +1,4 @@
-#!bin/sh
+#!/bin/sh
 
 
 plugged=$(lsusb | grep Unicomp | wc -l);
@@ -13,3 +13,5 @@ if [[ $plugged = 1 ]]; then
 else
     setxkbmap -layout us
 fi
+
+kill -53 $(pidof dwmblocks)
