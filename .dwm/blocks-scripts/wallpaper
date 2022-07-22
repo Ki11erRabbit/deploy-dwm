@@ -1,10 +1,11 @@
 #!/bin/sh
 
 case $BLOCK_BUTTON in
-	2) pkill -RTMIN+10 dwmblocks;;
+	2)  cat ~/.fehbg | awk 'FNR==2 {print}' | sed 's/feh --no-fehbg --bg-fill//g' | xargs xdg-open;;
+		#pkill -RTMIN+10 dwmblocks;;
 	3) notify-send "🖼️ Wallpaper Module" "Changes wallpaper
 - Left click to change." ;;
-	6) $TERMINAL -e nvim "$0" ;;
+	6) $TERMINAL -e $EDITOR "$0" ;;
 	*) find ~/Pictures/Wallpapers/dwm -type f \( -name '*.jpg' -o -name '*.png' \) -print0 |
         shuf -n1 -z | xargs -0 feh --bg-fill;;
 esac && echo "🖼️"
