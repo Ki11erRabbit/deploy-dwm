@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/dash
 
 # Displays number of unread mail and an loading icon if updating.
 # When clicked, brings up `neomutt`.

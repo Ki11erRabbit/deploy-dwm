@@ -1,0 +1,4 @@
+#!/bin/dash
+
+nohup caffeinate &
+kill -53 $(pidof dwmblocks) &

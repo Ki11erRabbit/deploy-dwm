@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/dash
 
 # Prints the current volume or  if muted.
 

@@ -1,0 +1,11 @@
+#!/bin/dash
+
+setxkbmap -device \
+                  $(xinput -list | grep Unicomp | awk '{print $7}' | sed 's/id=//g') \
+                  -variant colemak_dh && \
+                  xmodmap -e "clear lock" && \
+                  xmodmap -e "keycode 66 = BackSpace Caps_Lock"
+                  setxkbmap -device \
+                  $(xinput -list | grep Moonlander | grep Keyboard | awk '{print $7}' | sed 's/id=//g') \
+                  us
+

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/dash
 
 status=$(acpi -b | awk '{printf $3}' | rev | cut -c2- | rev)
 capacity=$(acpi -b | awk '{printf $4}' | rev | cut -c2- | rev)

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/dash
 
 DAY=$(date '+%d')
 BDAY="<b>$day<\\b>"

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/dash
 
 cputemp=$(cat /sys/class/thermal/thermal_zone0/temp | sed 's/.\{3\}$//')
 

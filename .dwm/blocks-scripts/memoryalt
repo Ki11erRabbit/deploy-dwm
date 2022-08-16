@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/dash
 
 
 output=$(free -h | awk '/^Mem/ { print $3\"/\"$2 }' | sed s/i//g)

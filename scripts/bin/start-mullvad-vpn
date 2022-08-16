@@ -1,0 +1,4 @@
+#!/bin/sh
+
+
+doas wg-quick up $MULLVAD_SERVER

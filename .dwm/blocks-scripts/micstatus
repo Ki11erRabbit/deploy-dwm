@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/dash
 
 case $BLOCK_BUTTON in
 	1) amixer set Capture toggle > /dev/null; kill -47 $(pidof dwmblocks);;
@@ -9,7 +9,7 @@ Left Mouse to toggle mute";;
 esac
 
 
-if [[ $(pactl list short | grep RUNNING | awk '/input/ {print $2}' | wc -c) -ne 0 ]]; then
+if [ $(pactl list short | grep RUNNING | awk '/input/ {print $2}' | wc -c) -ne 0 ]; then
 
 	if pactl get-source-mute @DEFAULT_SOURCE@ | grep -q yes; then
 		echo "🎙️ muted"

@@ -1,17 +1,12 @@
 
 
-
-#export VISUAL=vim
-export EDITOR="nvim"
-export BROWSER="firefox"
-export VIDEO="mpv"
-export SHELL="zsh"
-export TERMINAL="alacritty"
 EDITOR="nvim"
-TERMINAL="kitty"
+TERMINAL="alacritty"
 BROWSER="firefox"
 VIDEO="mpv"
 SHELL="zsh"
+export TERMINAL="alacritty"
+
 
 # NNN
 
@@ -19,6 +14,7 @@ export NNN_PLUG='k:kdeconnect;p:preview-tui;b:preview-tabbed;d:xdgdefault;c:!con
 export NNN_BMS='s:~/Documents/Suckless-Software/;'
 export NNN_TRASH=1
 #export NNN_OPENER='~/.config/nnn/plugins/nuke'
+#export NNN_OPENER='handlr-open'
 
 
 

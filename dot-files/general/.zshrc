@@ -6,8 +6,10 @@
 	#PROMPT="[%F{magenta}%n%f%F{blue}@%f%F{green}%m%f %F{red}%d%f]$ "
 	#PROMPT="【%F{magenta}%n%f%F{cyan}が%f%F{magenta}図書館に%f %F{cyan}%d%f】"
 	#PROMPT="❬%F{magenta}%n%f❭ %f%F{magenta}図書館に%f %F{blue}%d " #%f❭
-	PROMPT="❬%F{magenta}%n%f❭ %f%F{magenta}図書館に%f %F{blue}%d
- "
+	#PROMPT="❬%F{magenta}%n%f❭ %f%F{magenta}図書館に%f %F{blue}%d
+# "
+	PROMPT="❬%F{13}%n%f❭ %f%F{13}図書館に%f %F{12}%d
+%f "
 	#PROMPT="[%F{magenta}%n%f%F{blue}@%f%F{green}%m%f %F{red}%~%f]$ "
 
 # History
@@ -19,8 +21,8 @@
 	# NO Beeps
 		unsetopt beep
 	# Set Editor
-		export EDITOR='nvim'
-		export VISUAL='nvim'
+		#export EDITOR='nvim'
+		#export VISUAL='nvim'
 	
 	# vi mode
 		bindkey -v
@@ -47,10 +49,14 @@
 		#alias nsxiv='nsxiv-env'
 		alias nn='n -c -a'	
 
-		alias suckless='cd /home/ki11errabbit/Documents/Suckless-Software'		
+        alias emacs="dwmswallow $WINDOWID; emacsclient -c -a emacs"
+		alias sudo='doas'
+		alias makeconf='$EDITOR /etc/portage/make.conf'
+		alias packageuse='$EDITOR /etc/portage/package.use/package.use'
+
+		#alias suckless='cd /home/ki11errabbit/Documents/Suckless-Software'		
 		#alias cmus='screen -q -r -D cmus || screen -S cmus $(which --skip-alias cmus)'
 		alias cmus='screen -q -r -D cmus || screen -S cmus $(which --skip-alias cmus)'
-
 
 # Basic auto/tab complete:
 	autoload -U compinit
@@ -72,7 +78,7 @@
 	# GREP Colors
 		alias grep='grep --color=auto'
 
-export PATH=/home/ki11errabbit/.local/bin:$PATH
+export PATH=/home/ki11errabbit/.local/bin:$PATH:/home/ki11errabbit/.local/share/flatpak/exports/bin:/var/lib/flatpak/exports/bin
 # NNN
 # CD on Quit
 
@@ -105,15 +111,22 @@ n ()
     fi
 }
 
-
+bindkey '^X^m' accept-line-swallow
+zle -N accept-line-swallow acceptandswallow
+acceptandswallow() {
+    dwmswallow $WINDOWID
+    zle accept-line
+}
 
 # Some weird NVM thing	
 	export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 	[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 # Rust
-	. "$HOME/.cargo/env"
+#	. "$HOME/.cargo/env"
 # Plugins
 
 	# Load zsh-syntax-highlighting; should be last.
-		source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+	source /home/ki11errabbit/git/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# Plan9 
+#	source ~/.plan9aliasrc
