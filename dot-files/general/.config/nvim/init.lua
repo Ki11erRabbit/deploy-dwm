@@ -19,6 +19,10 @@ o.clipboard = 'unnamedplus'
 o.smartcase = true
 o.ignorecase = true
 o.wildmode = 'longest,list,full'
+o.tabstop = 4
+o.shiftwidth = 4
+o.expandtab = true
+
 --o.nocompatible = true
 
 --vim.cmd('source ~/.config/nvim/static/DWM.vim')
