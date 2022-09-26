@@ -29,6 +29,12 @@ a.nvim_set_keymap("n","<space>fh", ":lua require('memento').toggle()<cr>", { nor
 
 a.nvim_set_keymap("n","<space>sl", ":Telescope possession list<cr>", { noremap = true })
 
+--| TagBar |--
+a.nvim_set_keymap("n","<space>tb", ":TagbarToggle<cr>", { noremap = true })
+
+--| Markdown Preview |--
+a.nvim_set_keymap("n","<space>mp", ":MarkdownPreviewToggle<cr>", { noremap = true })
+
 --| Packer keybinds |--
 a.nvim_set_keymap("n","<space>pi", ":PackerInstall<cr>", { noremap = true })
 a.nvim_set_keymap("n","<space>pc", ":PackerClean<cr>", { noremap = true })

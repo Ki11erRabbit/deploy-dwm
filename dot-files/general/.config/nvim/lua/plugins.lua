@@ -41,7 +41,7 @@ return require('packer').startup(function(use)
 
      use 'kyazdani42/nvim-web-devicons'
 
-   --  use 'glepnir/indent-guides.nvim'
+     use 'glepnir/indent-guides.nvim'
 
      use {'glepnir/dashboard-nvim'}
      --  use { 'settings/keybinds.lua' }
@@ -102,5 +102,24 @@ return require('packer').startup(function(use)
       end,
      })
 
+     use { "williamboman/mason.nvim" }
 
+     use 'ludovicchabant/vim-gutentags'
+
+     use 'nvim-treesitter/nvim-treesitter-context'
+
+     use 'yegappan/taglist'
+     
+     use 'preservim/tagbar'
+
+     use 'lewis6991/gitsigns.nvim'
+     
+     use 'folke/which-key.nvim'
+
+     use {
+        'glacambre/firenvim',
+        run = function() vim.fn['firenvim#install'](0) end 
+     }
+
+     use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
 end)
