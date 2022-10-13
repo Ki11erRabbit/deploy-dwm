@@ -135,7 +135,18 @@ require("clangd_extensions").setup {
 --    on_attach = on_attach,
 --    flags = lsp_flags,
 --                               }
+local rt = require("rust-tools")
 
+rt.setup({
+  server = {
+    on_attach = function(_, bufnr)
+      -- Hover actions
+      vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
+      -- Code action groups
+      vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
+    end,
+  },
+})
 --| Treesitter settings --|
 require'nvim-treesitter.configs'.setup {
   ensure_installed = { "c", "lua", "bash" },
@@ -294,3 +305,102 @@ require('gitsigns').setup {
 
 --| which-key |--
 require("which-key").setup{}
+
+--| renamer |--
+local mappings_utils = require('renamer.mappings.utils')
+require('renamer').setup {
+    -- The popup title, shown if `border` is true
+    title = 'Rename',
+    -- The padding around the popup content
+    padding = {
+        top = 0,
+        left = 0,
+        bottom = 0,
+        right = 0,
+    },
+    -- The minimum width of the popup
+    min_width = 15,
+    -- The maximum width of the popup
+    max_width = 45,
+    -- Whether or not to shown a border around the popup
+    border = true,
+    -- The characters which make up the border
+    border_chars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
+    -- Whether or not to highlight the current word references through LSP
+    show_refs = true,
+    -- Whether or not to add resulting changes to the quickfix list
+    with_qf_list = true,
+    -- Whether or not to enter the new name through the UI or Neovim's `input`
+    -- prompt
+    with_popup = true,
+    -- The keymaps available while in the `renamer` buffer. The example below
+    -- overrides the default values, but you can add others as well.
+    mappings = {
+        ['<c-i>'] = mappings_utils.set_cursor_to_start,
+        ['<c-a>'] = mappings_utils.set_cursor_to_end,
+        ['<c-e>'] = mappings_utils.set_cursor_to_word_end,
+        ['<c-b>'] = mappings_utils.set_cursor_to_word_start,
+        ['<c-c>'] = mappings_utils.clear_line,
+        ['<c-u>'] = mappings_utils.undo,
+        ['<c-r>'] = mappings_utils.redo,
+    },
+    -- Custom handler to be run after successfully renaming the word. Receives
+    -- the LSP 'textDocument/rename' raw response as its parameter.
+    handler = nil,
+}
+require("focus").setup({hybridnumber = true, excluded_filetypes = {"toggleterm"}})
+
+--| nvim-autopairs |--
+local npairs = require("nvim-autopairs")
+local Rule = require('nvim-autopairs.rule')
+
+npairs.setup({
+    check_ts = true,
+    ts_config = {
+        lua = {'string'},-- it will not add a pair on that treesitter node
+        javascript = {'template_string'},
+        java = false,-- don't check treesitter on java
+    }
+})
+
+local ts_conds = require('nvim-autopairs.ts-conds')
+
+
+-- press % => %% only while inside a comment or string
+npairs.add_rules({
+  Rule("%", "%", "lua")
+    :with_pair(ts_conds.is_ts_node({'string','comment'})),
+  Rule("$", "$", "lua")
+    :with_pair(ts_conds.is_not_ts_node({'function'}))
+})
+
+
+
+--| Session Manager |--
+local Path = require('plenary.path')
+require('session_manager').setup({
+  sessions_dir = Path:new(vim.fn.stdpath('data'), 'sessions'), -- The directory where the session files will be saved.
+  path_replacer = '__', -- The character to which the path separator will be replaced for session files.
+  colon_replacer = '++', -- The character to which the colon symbol will be replaced for session files.
+  autoload_mode = require('session_manager.config').AutoloadMode.Disabled, -- Define what to do when Neovim is started without arguments. Possible values: Disabled, CurrentDir, LastSession
+  autosave_last_session = true, -- Automatically save last session on exit and on session switch.
+  autosave_ignore_not_normal = true, -- Plugin will not save a session when no buffers are opened, or all of them aren't writable or listed.
+  autosave_ignore_filetypes = { -- All buffers of these file types will be closed before the session is saved.
+    'gitcommit',
+  },
+  autosave_only_in_session = false, -- Always autosaves session. If true, only autosaves after a session is active.
+  max_path_length = 80,  -- Shorten the display path if length exceeds this threshold. Use 0 if don't want to shorten the path at all.
+})
+
+--| Yanky |--
+require("yanky").setup({
+  ring = {
+    history_length = 100,
+    storage = "shada",
+    sync_with_numbered_registers = true,
+    cancel_event = "update",
+  },
+  system_clipboard = {
+    sync_with_ring = true,
+  },
+})

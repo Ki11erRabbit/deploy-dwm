@@ -121,5 +121,57 @@ return require('packer').startup(function(use)
         run = function() vim.fn['firenvim#install'](0) end 
      }
 
+    -- install without yarn or npm
+     use({
+        "iamcco/markdown-preview.nvim",
+        run = function() vim.fn["mkdp#util#install"]() end,
+     })
+
      use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
+
+     use 'Pocco81/auto-save.nvim'
+
+     use 'neovim/nvim-lspconfig'
+     use 'simrat39/rust-tools.nvim'
+
+     -- Debugging
+     use 'mfussenegger/nvim-dap'
+
+     --use 'Ki11erRabbit/vim-visual-multi-for-colemak-dh'
+     use 'mg979/vim-visual-multi'
+
+     use {
+         'filipdutescu/renamer.nvim',
+         branch = 'master',
+         requires = { {'nvim-lua/plenary.nvim'} }
+     }
+     
+     -- Lua
+     use({
+      "gbprod/yanky.nvim",
+      config = function()
+        require("yanky").setup({
+          -- your configuration comes here
+          -- or leave it empty to use the default settings
+          -- refer to the configuration section below
+        })
+      end
+     })
+     use { "beauwilliams/focus.nvim", config = function() require("focus").setup() end }
+        -- Or lazy load with `module` option. See further down for info on how to lazy load when using FocusSplit commands
+        -- Or lazy load this plugin by creating an arbitrary command using the cmd option in packer.nvim
+        -- use { 'beauwilliams/focus.nvim', cmd = { "FocusSplitNicely", "FocusSplitCycle" }, module = "focus",
+        --     config = function()
+        --         require("focus").setup({hybridnumber = true})
+        --     end
+        -- }
+
+     use({"L3MON4D3/LuaSnip", tag = "v<CurrentMajor>.*"})
+
+     use "Shatur/neovim-session-manager"
+
+     use {
+        "windwp/nvim-autopairs",
+        config = function() require("nvim-autopairs").setup {} end
+     }
 end)

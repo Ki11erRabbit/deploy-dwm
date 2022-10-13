@@ -6,6 +6,48 @@ local o = vim.o
 local a = vim.api
 
 
+--| Vim-visual-multi |--
+vim.cmd [[
+"let g:VM_default_mappings = 0
+let g:VM_custom_motions = {'h': 'm', 'j':'n', 'k':'e', 'l':'i'}
+"let g:VM_custom_remaps = {'h': 'm', 'j':'n', 'k':'e', 'l':'i'}
+let g:VM_maps = {}
+let g:VM_maps["Find Next"] = 'j'
+let g:VM_maps["Find Prev"] = 'J'
+let g:VM_maps["Find Under"] = '<C-c>'
+let g:VM_maps["Add Cursor Down"] = '<M-n>'
+let g:VM_maps["Add Cursor Up"] = '<M-e>'
+let g:VM_maps["Select h"] = 'M'
+let g:VM_maps["Select j"] = 'N'
+let g:VM_maps["Select k"] = 'E'
+let g:VM_maps["Select l"] = 'I'
+let g:VM_maps['i'] = 'o'
+let g:VM_maps['I'] = 'O'
+"let g:VM_maps['y'] = 'y'
+let g:VM_maps['m'] = 'k'
+"let g:VM_maps['h'] = 'm'
+"let g:VM_maps['j'] = 'n'
+"let g:VM_maps['k'] = 'e'
+"let g:VM_maps['l'] = 'i'
+]]
+
+--| Focus Spit |--
+vim.api.nvim_set_keymap('n', '<leader>m', ':FocusSplitLeft<CR>', { silent = true })
+vim.api.nvim_set_keymap('n', '<leader>n', ':FocusSplitDown<CR>', { silent = true })
+vim.api.nvim_set_keymap('n', '<leader>e', ':FocusSplitUp<CR>', { silent = true })
+vim.api.nvim_set_keymap('n', '<leader>i', ':FocusSplitRight<CR>', { silent = true })
+--| Renamer.nvim |--
+a.nvim_set_keymap('i', '<F2>', '<cmd>lua require("renamer").rename()<cr>', { noremap = true, silent = true })
+a.nvim_set_keymap('n', '<leader>rn', '<cmd>lua require("renamer").rename()<cr>', { noremap = true, silent = true })
+a.nvim_set_keymap('v', '<leader>rn', '<cmd>lua require("renamer").rename()<cr>', { noremap = true, silent = true })
+
+--| Yanky |--
+vim.keymap.set({"n","x"}, "p", "<Plug>(YankyPutAfter)")
+vim.keymap.set({"n","x"}, "P", "<Plug>(YankyPutBefore)")
+vim.keymap.set({"n","x"}, "gp", "<Plug>(YankyGPutAfter)")
+vim.keymap.set({"n","x"}, "gP", "<Plug>(YankyGPutBefore)")
+vim.keymap.set("n", "<c-n>", "<Plug>(YankyCycleForward)")
+vim.keymap.set("n", "<c-p>", "<Plug>(YankyCycleBackward)")
 
 --| Number Toggle |--
 a.nvim_set_keymap("n", "<space>n", ":setlocal invnumber<cr> :setlocal invrelativenumber<cr>", { noremap = true })
@@ -67,6 +109,4 @@ vim.keymap.set('', '<c-w>m', '<c-w>h') -- left
 vim.keymap.set('', '<c-w>n', '<c-w>j') -- down
 vim.keymap.set('', '<c-w>e', '<c-w>k') -- up
 vim.keymap.set('', '<c-w>i', '<c-w>l') -- right
-
-
 
